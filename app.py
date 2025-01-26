@@ -1,10 +1,9 @@
 import openai
 from flask import Flask, request, jsonify
-from waitress import serve
-from flask_cors import CORS   
+from flask_cors import CORS
 import os
 
-
+# Initialize OpenAI client
 client = openai.OpenAI(api_key=os.environ.get('OPENAI_API_KEY'))
 
 app = Flask(__name__)
@@ -63,13 +62,15 @@ Always maintain a tone that reflects our premium brand positioning."""},
             temperature=0.7
         )
 
-        bot_response = response.choices[0].message.content.strip()        # print(f"Bot response: {bot_response}")
-
+        bot_response = response.choices[0].message.content.strip()
         return jsonify({'response': bot_response})
     except Exception as e:
         print(f"Error: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/')
+def home():
+    return 'Welcome to the Chatbot API! Use the /api/chat endpoint to chat.'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
