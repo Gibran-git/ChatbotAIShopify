@@ -57,7 +57,7 @@ Return Policy:
 Please provide elegant, professional responses that reflect our luxury brand image. Be helpful and informative about our products and customization options."""},
                 {"role": "user", "content": user_message}
             ],
-            max_tokens=250,
+            max_tokens=125,
             temperature=0.7
         )
         bot_response = response.choices[0].message.content.strip()
