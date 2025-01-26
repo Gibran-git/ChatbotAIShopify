@@ -64,7 +64,7 @@ Always maintain a tone that reflects our premium brand positioning."""},
         )
 
         bot_response = response.choices[0].message.content.strip()        # print(f"Bot response: {bot_response}")
-i 
+
         return jsonify({'response': bot_response})
     except Exception as e:
         print(f"Error: {str(e)}")
